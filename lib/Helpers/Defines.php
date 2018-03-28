@@ -10,6 +10,9 @@ class Defines
     const APP_RESPONSE_TYPE_JSON   = 0;
     const APP_RESPONSE_TYPE_CUSTOM = 1;
 
+    const  ASSIGNMENT_ACCEPTED = 1;
+    const  ASSIGNMENT_WAITING  = 0;
+
 
     const TOKEN_TYPE_REGISTRATION    = "REGISTER";
     const TOKEN_TYPE_SIGN_IN         = "LOGIN";

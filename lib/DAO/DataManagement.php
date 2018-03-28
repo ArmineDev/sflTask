@@ -14,4 +14,14 @@ interface DataManagement
     public function createProduct(Product $product);
 
     public function createTable(Table $table);
+
+    public function createTableAssignment($tableId, $userId);
+
+    public function getTableList($userId, $filter = [], $start = 0, $limit = 10);
+
+    public function doOrderForTable($assignmentId, $userId);
+
+
+
+
 }

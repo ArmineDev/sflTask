@@ -24,23 +24,7 @@ class User extends Model
 {
 
     use GetterSetter;
-    private   $tableId;
 
-    /**
-     * @return mixed
-     */
-    public function getTableId()
-    {
-        return $this->tableId;
-    }
-
-    /**
-     * @param mixed $tableId
-     */
-    public function setTableId($tableId)
-    {
-        $this->tableId = $tableId;
-    }
     protected $userId;
     protected $userName;
     protected $passSalt;
@@ -208,8 +192,7 @@ class User extends Model
     public function getEditableProperties()
     {
         $properties = [
-            'role',
-            'tableId'
+            'role'
         ];
 
         if (!$this->checkFieldsPattern('update') || !$this->checkRequiredFields('update') ){

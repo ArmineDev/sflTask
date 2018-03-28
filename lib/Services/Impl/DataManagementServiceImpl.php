@@ -14,7 +14,8 @@ use SITE\Services\DataManagementService;
  * @package SITE\Services\Impl
  * @Transactional
  */
-class DataManagementServiceImpl implements DataManagementService {
+class DataManagementServiceImpl implements DataManagementService
+{
     /**
      * @Inject
      * @var \SITE\DAO\DataManagement
@@ -26,24 +27,39 @@ class DataManagementServiceImpl implements DataManagementService {
      */
     protected $user;
 
-    public function createProduct(Product $product, $userId){
+    public function createProduct(Product $product, $userId)
+    {
         $product->setUserId($userId);
-        return $this->dataManagement->createProduct( $product);
+        return $this->dataManagement->createProduct($product);
     }
-    public function createTable (Table $table, $userId){
+
+    public function createTable(Table $table, $userId)
+    {
         $table->setUserId($userId);
-        return $this->dataManagement->createTable( $table);
+        return $this->dataManagement->createTable($table);
     }
-    public function assignTable($tableId, $userId, User $user){
-        $owner =  $this->user->getUserById($user->getUserId());
+
+    public function createTableAssignment($tableId, $userId, User $user)
+    {
+        $owner = $this->user->getUserById($user->getUserId());
         if (!isset($owner)) {
             Notification::error(1, _('Not valid dta'), 'assignTable');
             return false;
         }
-        $owner->setTableId($tableId);
 
-        $fields = $owner->getEditableProperties();
-        return $this->user->updateUserInfo($user->getUserId(),$fields);
+        return $this->dataManagement->createTableAssignment($tableId, $owner->getUserId());
     }
+
+    public function getTableList($userId, $filter = [], $start = 0, $limit = 10)
+    {
+        return ['list' => $this->dataManagement->getTableList($userId, $filter, $start, $limit)];
+
+    }
+
+    public function doOrderForTable($assignmentId, $userId)
+    {
+        $this->dataManagement->doOrderForTable($assignmentId, $userId);
+    }
+
 
 }

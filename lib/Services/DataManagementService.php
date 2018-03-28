@@ -16,8 +16,11 @@ interface DataManagementService
 
     public function createTable(Table $table, $userId);
 
-    public function assignTable($tableId, $userId, User $user);
+    public function createTableAssignment($tableId, $userId, User $user);
 
+    public function doOrderForTable($assignmentId, $userId);
+
+    public function getTableList($userId, $filter = [], $start = 0, $limit = 10) ;
 
 
 }
