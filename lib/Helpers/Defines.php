@@ -27,6 +27,7 @@ class Defines
         'createUser',
         "signOut",
         'signIn',
+
     ];
 
 

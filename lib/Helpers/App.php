@@ -192,10 +192,24 @@ class App {
         }
         return $retData;
     }
+    private function checkServiceArguments($className, &$arguments) {
+
+        switch ($className) {
+            case 'AFFPRO\Services\DataManagementService':
+$a = 1;                return false;
+                break;
+
+        }
+
+        return true;
+    }
 
     public function call($className, $methodName, array $arguments = []) {
         $class = $this->container->get($className);
         if (A7::methodExists($class, $methodName)) {
+            if (!$this->checkServiceArguments($className, $arguments)) {
+                return false;
+            }
             $reflectorMethod = ReflectionUtils::getInstance()->getMethodReflection($className, $methodName);
             foreach ($reflectorMethod->getParameters() as $param) {
                 if (isset($arguments[$param->name])) {

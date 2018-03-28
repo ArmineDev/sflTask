@@ -11,19 +11,24 @@ use SITE\Helpers\Notification;
 
 class Product extends Model {
     use GetterSetter;
-    private   $userId;
-    private   $productName;
     private   $productId;
-    private   $amount;
+
     private   $requiredFields = [
         "productName",
         "amount"
     ];
 
-    protected $description;
-    protected $creationDate;
-    protected $imageName;
+    protected   $userId;
+    protected   $productName;
+    protected   $amount;
+    protected   $description;
+    protected   $creationDate;
+    protected   $imageName;
     public function __construct($data = [], $checkRequired = true) {
+        if (!isset($data['creationDate'])) {
+            $this->creationDate = date('Y-m-d H:i:s');
+
+        }
         if($checkRequired) {
             foreach ($this->requiredFields as $value) {
                 if (!array_key_exists($value, $data) || $data[$value] === "") {
@@ -131,7 +136,9 @@ class Product extends Model {
     /**
      * @param mixed $creationDate
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate)
+    {
+
         $this->creationDate = $creationDate;
     }
 

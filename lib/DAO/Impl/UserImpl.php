@@ -35,7 +35,7 @@ class UserImpl implements User
             if (!is_null($this->getUserByEmail($user->email))) {
                 $isValid = false;
                 Notification::error(1, _("We're sorry, that email is taken."), '');
-            } elseif (!is_null($this->getAffiliateByUsername($user->username))) {
+            } elseif (!is_null($this->getUserByUsernameOrEmail($user->userName))) {
                 $isValid = false;
                 Notification::error(1, _('This username is already taken.'), '');
             }
