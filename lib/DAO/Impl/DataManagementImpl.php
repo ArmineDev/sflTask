@@ -44,11 +44,18 @@ class DataManagementImpl implements DataManagement
 
     public function getTableList($userId, $filter = [], $start = 0, $limit = 10)
     {
+        $where = "user_table.userId = :userId";
+        $bind  = ['userId' => $userId];
+        if(isset($filter['ordered'])) {
+            $order = ($filter['ordered'] == "true")?1:0;
+            $where .= " AND user_table.ordered = :ordered ";
+            $bind["ordered"] = $order;
+        }
         $query = "SELECT user_table.*,tablelist.tableName FROM user_table
                   INNER JOIN tablelist on tablelist.tableId = user_table.tableId
-                  WHERE user_table.userId = :userId";
+                  WHERE {$where}";
         Utils::limit($query, $start, $limit);
-        return $this->db->run($query, ['userId' => $userId], ['fetch' => true]);
+        return $this->db->run($query, $bind, ['fetch' => true]);
     }
 
     public function getProductList($filter = [], $start = 0, $limit = 10){

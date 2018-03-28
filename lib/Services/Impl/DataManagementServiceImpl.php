@@ -55,7 +55,9 @@ class DataManagementServiceImpl implements DataManagementService
         return ['list' => $this->dataManagement->getTableList($userId, $filter, $start, $limit)];
 
     }
-    public function getProductList($userId, $filter = [], $start = 0, $limit = 10) {
+
+    public function getProductList($userId, $filter = [], $start = 0, $limit = 10)
+    {
         return ['list' => $this->dataManagement->getProductList($filter, $start, $limit)];
 
     }
@@ -69,6 +71,11 @@ class DataManagementServiceImpl implements DataManagementService
     public function cancelTableOrder($assignmentId, $userId)
     {
         return $this->dataManagement->cancelTableOrder($assignmentId, $userId);
+
+    }
+
+    public function orderProducts($assignmentId, $userId)
+    {
 
     }
 

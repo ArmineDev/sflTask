@@ -20,6 +20,9 @@ interface DataManagementService
 
     public function doOrderForTable($assignmentId, $userId);
 
+    public function orderProducts($assignmentId, $userId);
+
+
     public function cancelTableOrder($assignmentId, $userId);
 
     public function getTableList($userId, $filter = [], $start = 0, $limit = 10) ;
