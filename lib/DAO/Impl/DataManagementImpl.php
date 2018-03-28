@@ -105,11 +105,24 @@ class DataManagementImpl implements DataManagement
             return false;
         }
     }
-    public function getOrderedProductList($userId, $assignmentId){
-        $query = "SELECT products.productName,products.amount, order_products.id as orderProductId FROM `order_products`
+
+    public function getOrderedProductList($userId, $assignmentId)
+    {
+        $query = "SELECT products.productName,products.amount, order_products.id as productOrderedId FROM `order_products`
                     INNER JOIN user_table on user_table.id = order_products.orderId
                     INNER JOIN products on products.productId = order_products.productId WHERE user_table.id  = :id and user_table.userId = :userId and user_table.ordered = 1 ;";
         return $this->db->run($query, ['id' => $assignmentId, "userId" => $userId], ['fetch' => true]);
+
+    }
+
+    public function cancelOrder($userId, $productOrderedId)
+    {
+        $query = "DELETE w from `order_products` w
+         INNER JOIN user_table on user_table.id = w.orderId
+         where w.id = :id AND user_table.userId = :userId";
+
+         $this->db->run($query, ['id' => $productOrderedId, "userId" => $userId]);
+         return true;
 
     }
 

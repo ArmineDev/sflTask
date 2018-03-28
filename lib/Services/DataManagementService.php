@@ -30,6 +30,9 @@ interface DataManagementService
 
     public function getOrderedProductList($userId, $assignmentId) ;
 
+    public function cancelOrder($userId, $productOrderedId) ;
+
+
 
 
 }

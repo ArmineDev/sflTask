@@ -85,6 +85,11 @@ class DataManagementServiceImpl implements DataManagementService
         return $this->dataManagement->getOrderedProductList($userId, $assignmentId);
 
     }
+    public function cancelOrder($userId, $productOrderedId)
+    {
+        return $this->dataManagement->cancelOrder($userId, $productOrderedId);
+
+    }
 
 
 }
