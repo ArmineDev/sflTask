@@ -3,7 +3,9 @@
 namespace SITE\DAO\Impl;
 
 use SITE\DAO\DataManagement;
+use SITE\Exceptions\DBException;
 use SITE\Helpers\Defines;
+use SITE\Helpers\Notification;
 use SITE\Helpers\Utils;
 use SITE\Models\Product;
 use SITE\Models\Table;
@@ -77,6 +79,31 @@ class DataManagementImpl implements DataManagement
         $this->db->delete($this->userTableListConnectionTable,"userId = :userId AND id = :id", ['userId' => $userId, 'id' => $assignmentId]);
         return true;
     }
+    public function orderProducts($assignmentId, $userId, $products = [])
+    {
+        $res = $this->db->select($this->userTableListConnectionTable, "userId = :userId and id = :id and ordered = 1", ['userId' => $userId, 'id' => $assignmentId]);
+        if (!isset($res[0])) {
+            return false;
+        }
+        $arr = [
+            "orderId" => $assignmentId,
+        ];
+        $this->db->beginTransaction();
+        try {
+            foreach ($products as $key => $val) {
+                $arr['productId'] = $val;
+                $this->db->insert("order_products", $arr);
+            }
+
+            $this->db->commit();
+            return true;
+        } catch (DBException $e) {
+            $this->db->rollback();
+            Notification::error(1, _('Wrong data'), '');
+            return false;
+        }
+    }
 
 
-}
+
+        }

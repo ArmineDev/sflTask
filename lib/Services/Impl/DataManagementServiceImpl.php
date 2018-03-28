@@ -74,8 +74,9 @@ class DataManagementServiceImpl implements DataManagementService
 
     }
 
-    public function orderProducts($assignmentId, $userId)
+    public function orderProducts($assignmentId, $userId, $products = [])
     {
+        return $this->dataManagement->orderProducts($assignmentId, $userId, $products);
 
     }
 

@@ -26,5 +26,7 @@ interface DataManagement
 
     public function cancelTableOrder($assignmentId, $userId);
 
+    public function orderProducts($assignmentId, $userId, $products = []);
+
 
 }
