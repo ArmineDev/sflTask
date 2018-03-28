@@ -22,12 +22,13 @@ interface DataManagementService
 
     public function orderProducts($assignmentId, $userId, $products = []);
 
-
     public function cancelTableOrder($assignmentId, $userId);
 
     public function getTableList($userId, $filter = [], $start = 0, $limit = 10) ;
 
     public function getProductList($userId, $filter = [], $start = 0, $limit = 10) ;
+
+    public function getOrderedProductList($userId, $assignmentId) ;
 
 
 

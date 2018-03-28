@@ -28,5 +28,7 @@ interface DataManagement
 
     public function orderProducts($assignmentId, $userId, $products = []);
 
+    public function getOrderedProductList($userId, $assignmentId);
+
 
 }

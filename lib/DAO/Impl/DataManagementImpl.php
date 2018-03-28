@@ -47,9 +47,9 @@ class DataManagementImpl implements DataManagement
     public function getTableList($userId, $filter = [], $start = 0, $limit = 10)
     {
         $where = "user_table.userId = :userId";
-        $bind  = ['userId' => $userId];
-        if(isset($filter['ordered'])) {
-            $order = ($filter['ordered'] == "true")?1:0;
+        $bind = ['userId' => $userId];
+        if (isset($filter['ordered'])) {
+            $order = ($filter['ordered'] == "true") ? 1 : 0;
             $where .= " AND user_table.ordered = :ordered ";
             $bind["ordered"] = $order;
         }
@@ -60,7 +60,8 @@ class DataManagementImpl implements DataManagement
         return $this->db->run($query, $bind, ['fetch' => true]);
     }
 
-    public function getProductList($filter = [], $start = 0, $limit = 10){
+    public function getProductList($filter = [], $start = 0, $limit = 10)
+    {
         $query = "SELECT * FROM products ";
         Utils::limit($query, $start, $limit);
         return $this->db->run($query, [], ['fetch' => true]);
@@ -76,9 +77,10 @@ class DataManagementImpl implements DataManagement
 
     public function cancelTableOrder($assignmentId, $userId)
     {
-        $this->db->delete($this->userTableListConnectionTable,"userId = :userId AND id = :id", ['userId' => $userId, 'id' => $assignmentId]);
+        $this->db->delete($this->userTableListConnectionTable, "userId = :userId AND id = :id", ['userId' => $userId, 'id' => $assignmentId]);
         return true;
     }
+
     public function orderProducts($assignmentId, $userId, $products = [])
     {
         $res = $this->db->select($this->userTableListConnectionTable, "userId = :userId and id = :id and ordered = 1", ['userId' => $userId, 'id' => $assignmentId]);
@@ -103,7 +105,13 @@ class DataManagementImpl implements DataManagement
             return false;
         }
     }
+    public function getOrderedProductList($userId, $assignmentId){
+        $query = "SELECT products.productName,products.amount, order_products.id as orderProductId FROM `order_products`
+                    INNER JOIN user_table on user_table.id = order_products.orderId
+                    INNER JOIN products on products.productId = order_products.productId WHERE user_table.id  = :id and user_table.userId = :userId and user_table.ordered = 1 ;";
+        return $this->db->run($query, ['id' => $assignmentId, "userId" => $userId], ['fetch' => true]);
+
+    }
 
 
-
-        }
+}

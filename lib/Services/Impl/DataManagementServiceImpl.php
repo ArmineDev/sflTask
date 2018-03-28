@@ -80,5 +80,11 @@ class DataManagementServiceImpl implements DataManagementService
 
     }
 
+    public function getOrderedProductList($userId, $assignmentId)
+    {
+        return $this->dataManagement->getOrderedProductList($userId, $assignmentId);
+
+    }
+
 
 }
