@@ -55,4 +55,7 @@ interface User
      */
     public function updateToken(Users $user);
 
-}
+    public function signOut($token);
+
+
+    }

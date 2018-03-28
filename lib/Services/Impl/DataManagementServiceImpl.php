@@ -58,7 +58,13 @@ class DataManagementServiceImpl implements DataManagementService
 
     public function doOrderForTable($assignmentId, $userId)
     {
-        $this->dataManagement->doOrderForTable($assignmentId, $userId);
+        return $this->dataManagement->doOrderForTable($assignmentId, $userId);
+    }
+
+    public function cancelTableOrder($assignmentId, $userId)
+    {
+        return $this->dataManagement->cancelTableOrder($assignmentId, $userId);
+
     }
 
 

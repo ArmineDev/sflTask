@@ -19,4 +19,7 @@ interface UserService
 
     public function changeUserRole($userId, $role, Users $user);
 
-}
+    public function  signOut($token);
+
+
+    }

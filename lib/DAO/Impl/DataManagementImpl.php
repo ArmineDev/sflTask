@@ -51,8 +51,16 @@ class DataManagementImpl implements DataManagement
         $res = $this->db->run($query, ['userId' => $userId], ['fetch' => true]);
         return $res;
     }
-    public function doOrderForTable($assignmentId, $userId){
-        $this->db->update($this->userTableListConnectionTable,['ordered' => Defines::ASSIGNMENT_ACCEPTED],"userId = :userId AND id = :id",['userId' => $userId, 'id' => $assignmentId]);
+
+    public function doOrderForTable($assignmentId, $userId)
+    {
+        $this->db->update($this->userTableListConnectionTable, ['ordered' => Defines::ASSIGNMENT_ACCEPTED], "userId = :userId AND id = :id", ['userId' => $userId, 'id' => $assignmentId]);
+        return true;
+    }
+
+    public function cancelTableOrder($assignmentId, $userId)
+    {
+        $this->db->delete($this->userTableListConnectionTable,"userId = :userId AND id = :id", ['userId' => $userId, 'id' => $assignmentId]);
         return true;
     }
 

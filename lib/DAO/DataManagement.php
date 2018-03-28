@@ -21,6 +21,9 @@ interface DataManagement
 
     public function doOrderForTable($assignmentId, $userId);
 
+    public function cancelTableOrder($assignmentId, $userId);
+
+
 
 
 

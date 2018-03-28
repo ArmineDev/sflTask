@@ -115,5 +115,15 @@ class UserServiceImpl implements UserService {
         return $token;
     }
 
+    public function  signOut($token) {
+        $user = $this->user->getUserByToken($token);
+        if (isset($user)) {
+            return $this->user->signOut($token);
+        }
+        Notification::error(1, _('Wrong Token'), 'signOut');
+        return false;
+
+    }
+
 
 }

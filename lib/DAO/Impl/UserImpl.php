@@ -126,20 +126,7 @@ class UserImpl implements User
     }
 
 
-    public function signOut($token)
-    {
-        $expireDate = date('y-m-d H:i:s');
-        $this->db->beginTransaction();
-        try {
-            $this->db->update($this->userTableName, ['loginToken' => ''], "loginToken = :loginToken", ['loginToken' => $token]);
-            $this->db->update($this->tokenTableName, ['expireDate' => $expireDate], "token = :loginToken", ['loginToken' => $token]);
-            $this->db->commit();
-            return true;
-        } catch (DBException $e) {
-            $this->db->rollback();
-            return false;
-        }
-    }
+
 
     public function updateUserInfo($userId, $fields)
     {
@@ -149,5 +136,17 @@ class UserImpl implements User
         return $this->db->update($this->userTableName, ['loginToken'=>$user->loginToken], 'userId = :userId', ['userId' => $user->userId]);
     }
 
-
+    public function signOut($token){
+        $expireDate = date('y-m-d H:i:s');
+        $this->db->beginTransaction();
+        try {
+            $this->db->update($this->userTableName,['loginToken'=> ''],"loginToken = :loginToken",['loginToken'=>$token]);
+            $this->db->update($this->tokenTableName,['expireDate'=> $expireDate],"token = :loginToken",['loginToken'=>$token]);
+            $this->db->commit();
+            return true;
+        } catch (DBException $e) {
+            $this->db->rollback();
+            return false;
+        }
+    }
 }
