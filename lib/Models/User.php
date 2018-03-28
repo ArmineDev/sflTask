@@ -34,7 +34,7 @@ class User extends Model
     protected $registerIp;
     protected $password;
     protected $loginToken = '';
-    protected $role ;
+    protected $role =Defines::USER_ROLE_WAITER ;
 
 
     /**
