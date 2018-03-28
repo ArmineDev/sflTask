@@ -55,6 +55,11 @@ class DataManagementServiceImpl implements DataManagementService
         return ['list' => $this->dataManagement->getTableList($userId, $filter, $start, $limit)];
 
     }
+    public function getProductList($userId, $filter = [], $start = 0, $limit = 10) {
+        return ['list' => $this->dataManagement->getProductList($filter, $start, $limit)];
+
+    }
+
 
     public function doOrderForTable($assignmentId, $userId)
     {

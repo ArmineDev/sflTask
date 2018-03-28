@@ -48,9 +48,16 @@ class DataManagementImpl implements DataManagement
                   INNER JOIN tablelist on tablelist.tableId = user_table.tableId
                   WHERE user_table.userId = :userId";
         Utils::limit($query, $start, $limit);
-        $res = $this->db->run($query, ['userId' => $userId], ['fetch' => true]);
-        return $res;
+        return $this->db->run($query, ['userId' => $userId], ['fetch' => true]);
     }
+
+    public function getProductList($filter = [], $start = 0, $limit = 10){
+        $query = "SELECT * FROM products ";
+        Utils::limit($query, $start, $limit);
+        return $this->db->run($query, [], ['fetch' => true]);
+
+    }
+
 
     public function doOrderForTable($assignmentId, $userId)
     {

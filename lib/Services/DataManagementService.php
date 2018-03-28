@@ -24,5 +24,8 @@ interface DataManagementService
 
     public function getTableList($userId, $filter = [], $start = 0, $limit = 10) ;
 
+    public function getProductList($userId, $filter = [], $start = 0, $limit = 10) ;
+
+
 
 }

@@ -19,12 +19,12 @@ interface DataManagement
 
     public function getTableList($userId, $filter = [], $start = 0, $limit = 10);
 
+    public function getProductList($filter = [], $start = 0, $limit = 10);
+
+
     public function doOrderForTable($assignmentId, $userId);
 
     public function cancelTableOrder($assignmentId, $userId);
-
-
-
 
 
 }
