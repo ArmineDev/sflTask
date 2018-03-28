@@ -35,6 +35,7 @@ class UserServiceImpl implements UserService {
 
 
     public function createUser(Users $user) {
+        $a =1 ;
         if($user->getRole() == Defines::USER_ROLE_ADMIN){
             return false;
         }

@@ -126,9 +126,16 @@ class App {
                     $res = false;
                 }
                 $user =  $user['userId'];
-                /** @var \SITE\DAO\User $user */
+                $app = self::getInstance();
+                /** @var \SITE\DAO\User $userDao */
+                $userDao = $app->container->get('SITE\DAO\User');
+                $role = $userDao->getUserById($user);
+                if (($role->getRole() == Defines::USER_ROLE_WAITER  )&& substr($methodName,0,6) === "create") {
+                    $res = false;
+                }
                 unset($arguments['token']);
                 $arguments['userId'] = $user;
+
             }
             if ($res !== false) {
                 $res = $this->checkArguments($arguments, $user);

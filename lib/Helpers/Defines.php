@@ -27,10 +27,8 @@ class Defines
     const NOTIFICATION_TYPE_NOT_VERIFIED = 2;
 
     public static $availableFunctions = [
-        'createUser',
         "signOut",
         'signIn',
-
     ];
 
 
