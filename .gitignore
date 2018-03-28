@@ -1,0 +1,12 @@
+init.php
+.idea/
+vendor/
+composer.lock
+composer.phar
+phpunit.phar
+
+/nbproject/private/
+/nbproject
+/config.php
+/.settings/
+node_modules/

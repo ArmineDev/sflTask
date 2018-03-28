@@ -1,0 +1,29 @@
+{
+  "name": "",
+  "description": "",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "SITE\\": "lib/",
+      "SITE\\Services\\": "lib/Services/",
+      "SITE\\DAO\\": "lib/DAO/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ArmineKhachatryan/A7"
+    }
+  ],
+
+  "require": {
+    "ArmineKhachatryan/A7": "v1.1",
+    "phpmailer/phpmailer": "v5.2.16",
+    "phpoffice/phpexcel": "1.8.1",
+    "dompdf/dompdf": "0.6.*",
+    "google/apiclient": "2.0",
+    "facebook/graph-sdk": "5.x-dev"
+
+  }
+}

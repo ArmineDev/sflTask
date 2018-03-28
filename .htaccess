@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.js|\.ico|\.css|\.gif|\.jpeg|\.bmp)$
+RewriteRule (.*) index.php
+
+RewriteRule  page/(.*)/ index.php?page=$1
+RewriteRule  page/(.*) index.php?page=$1
