@@ -7,6 +7,5 @@ phpunit.phar
 
 /nbproject/private/
 /nbproject
-/config.php
 /.settings/
 node_modules/
